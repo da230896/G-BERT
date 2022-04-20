@@ -1,8 +1,11 @@
+from cmath import isnan
 import torch
 import numpy as np
 from typing import Tuple, Union
 from sklearn.metrics import roc_auc_score,f1_score, average_precision_score
     
+np.seterr(invalid='ignore')
+
 def multi_hot_to_codes(multi_hot: Union[torch.Tensor, np.ndarray]) -> torch.Tensor:
     # print(f"[multi_hot_to_codes] multi_hot.shape: {multi_hot.shape}")
     assert len(multi_hot.shape) == 1
@@ -79,20 +82,21 @@ def multi_label_metric(y_true: torch.Tensor, y_pred: torch.Tensor, y_pred_prob:t
             roc_auc.append(roc_auc_score(target, y_pred_prob[idx], average='macro'))
         return np.mean(roc_auc)
 
-    def sklearn_precision(y_true, y_pred_prob):
+    def sklearn_pr_auc(y_true: np.array, y_pred_prob: np.array):
         precision_score = []
         for idx, target in enumerate(y_true):
-            precision_score.append(average_precision_score(target, y_pred_prob[idx], average='macro'))
+            precision_score.append(average_precision_score(target, y_pred_prob[idx])) #  TODO: need to check whether this is reqd? average='macro'
         return np.mean(precision_score)
 
 
     j_accard = jaccard(y_true, y_pred)
     avg_recall, avg_prc, avg_f1 = average_precision_recall_f1(y_true, y_pred)
-    p_1 = precision_at_k(y_true, y_pred_prob, k=1)
-    p_3 = precision_at_k(y_true, y_pred_prob, k=3)
-    p_5 = precision_at_k(y_true, y_pred_prob, k=5)
-    roc_auc = sklearn_roc_auc(y_true.detach().numpy(), y_pred_prob.detach().numpy())
-    # auc = roc_auc(y_true, y_pred_prob)
-    # prauc = precision_auc(y_true, y_pred_prob)
+    # p_1 = precision_at_k(y_true, y_pred_prob, k=1)
+    # p_3 = precision_at_k(y_true, y_pred_prob, k=3)
+    # p_5 = precision_at_k(y_true, y_pred_prob, k=5)
+    # roc_auc = sklearn_roc_auc(y_true.detach().numpy(), y_pred_prob.detach().numpy())
+    pr_auc = sklearn_pr_auc(y_true.detach().numpy(), y_pred_prob.detach().numpy())
+    if isnan(pr_auc):
+        pr_auc = 0
 
-    return j_accard, avg_recall, avg_f1, avg_prc, p_1, p_3, p_5, roc_auc
+    return j_accard, pr_auc, avg_f1
