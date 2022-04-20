@@ -1,9 +1,9 @@
 import torch
 import numpy as np
-from typing import Tuple
+from typing import Tuple, Union
 from sklearn.metrics import roc_auc_score,f1_score, average_precision_score
     
-def multi_hot_to_codes(multi_hot: torch.Tensor) -> torch.Tensor:
+def multi_hot_to_codes(multi_hot: Union[torch.Tensor, np.ndarray]) -> torch.Tensor:
     # print(f"[multi_hot_to_codes] multi_hot.shape: {multi_hot.shape}")
     assert len(multi_hot.shape) == 1
     code_list = torch.where(multi_hot == 1)[0]
