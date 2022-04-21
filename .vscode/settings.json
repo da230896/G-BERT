@@ -3,7 +3,12 @@
         "Conv",
         "dtype",
         "glorot",
+        "jaccard",
+        "numel",
         "optim",
-        "sklearn"
+        "sklearn",
+        "strat",
+        "tqdm",
+        "unsqueeze"
     ]
 }
