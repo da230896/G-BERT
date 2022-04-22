@@ -6,6 +6,7 @@
         "jaccard",
         "numel",
         "optim",
+        "proba",
         "sklearn",
         "strat",
         "tqdm",
