@@ -6,6 +6,25 @@ from sklearn.metrics import roc_auc_score,f1_score, average_precision_score
     
 np.seterr(invalid='ignore')
 
+class Vocab(object):
+    def __init__(self):
+        self.idx2word = {}
+        self.word2idx = {}
+
+    def __len__(self) -> int:
+        return len(self.word2idx)
+        
+    def add_sentence(self, sentence: list[str]):
+        for word in sentence:
+            if word not in self.word2idx:
+                self.idx2word[len(self.idx2word)] = word
+                self.word2idx[word] = len(self.word2idx)
+
+    def add_special_tokens(self):
+        self.add_sentence(("[PAD]", "[MASK]", "[CLS]", "[UNK]"))
+        # Currently I am not using [PAD] tokens since they are masked using seq_mask
+        # TODO: Need to add [MASK] in pre-training
+
 def multi_hot_to_codes(multi_hot: Union[torch.Tensor, np.ndarray]) -> torch.Tensor:
     # print(f"[multi_hot_to_codes] multi_hot.shape: {multi_hot.shape}")
     assert len(multi_hot.shape) == 1
