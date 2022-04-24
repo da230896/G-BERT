@@ -9,7 +9,7 @@ These are referenced in the code base but we have not checked in since this data
 2. Single visit patient: We have assumed it to be for now patient with single hospital admission. Paper also talks in this direction. Moreover, we have taken whole admission data and not only first 24 data.
 3. Max seq len input to G-BERT: for pre-training it is 100(+1 for CLS) for ATC4 codes and 39(+1 for CLS) for ICD codes. And for training its 92+1 and 39+1 respectively. This is direct consequence of taking whole hospital visit data.  
 4. Number of most-frequent ICD9 codes: most frequent 2000 ICD9 codes are considered(impacting vocab size, and hence parameter size)
-5. Paper talks about masking in confusing manner. It says we mask 15% of codes, but we are not masking fixed 15% of codes. Rather we are masking codes with probability of 15%. This might mean that at time we mask more than or less than 15% codes in a sequence. 
+5. Paper talks about masking in confusing manner. It says we mask 15% of codes, but we are not masking fixed 15% of codes. Rather we are masking codes with probability of 15%. This might mean that at time we mask more than or less than 15% codes in a sequence. However over large iterations we would have ~15% tokens being masked.
 6. Direct consequence of (4.) and (5.): We face "[UNK]" token while preparing pre-training dataset and masking. Current masking strategy is to mask "[UNK]" token as well. This was adapted since had the token be known it would have been masked. Moreover this does not affect the downstream pre-training objectives.
 7. Hyper-parameter choice:
     <ul>
