@@ -5,6 +5,7 @@
         "dtype",
         "glorot",
         "HADM",
+        "isin",
         "jaccard",
         "lsols",
         "meds",
