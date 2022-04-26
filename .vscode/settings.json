@@ -1,9 +1,14 @@
 {
     "cSpell.words": [
         "Conv",
+        "dropna",
         "dtype",
         "glorot",
+        "HADM",
+        "isin",
         "jaccard",
+        "lsols",
+        "meds",
         "numel",
         "optim",
         "proba",
