@@ -1,22 +1,29 @@
 {
     "cSpell.words": [
+        "astype",
         "Conv",
         "dropna",
         "dtype",
         "glorot",
         "HADM",
+        "interpretability",
         "ipynb",
         "isin",
         "jaccard",
         "lsols",
         "meds",
+        "ndarray",
         "numel",
         "optim",
         "physionet",
         "proba",
+        "pyplot",
         "sklearn",
         "strat",
         "tqdm",
-        "unsqueeze"
+        "TSNE",
+        "unsqueeze",
+        "xlim",
+        "ylim"
     ]
 }
