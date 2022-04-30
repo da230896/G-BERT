@@ -18,12 +18,12 @@ def fashion_scatter(x: np.ndarray, y: np.ndarray):
     ax.axis('tight')
 
     # add the labels for each digit corresponding to the label
+    # right now we don't need it
+    # can uncomment and use later on
     texts = []
 
     # for i in range(num_classes):
-
     #     # Position of each label at median of data points.
-
     #     x_text, y_text = np.median(x[y == i, :], axis=0)
     #     txt = ax.text(x_text, y_text, str(i), fontsize=24)
     #     txt.set_path_effects([
