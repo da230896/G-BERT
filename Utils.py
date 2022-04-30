@@ -2,7 +2,6 @@ from cmath import isnan
 import torch
 import numpy as np
 from typing import Tuple, Union
-from vocab import Vocab
 from sklearn.metrics import roc_auc_score,f1_score, average_precision_score
     
 np.seterr(invalid='ignore')
