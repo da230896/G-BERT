@@ -19,7 +19,7 @@ Tables like PRESCRIPTIONS.CSV and DIAGNOSIS_ICD.csv which are present in MIMIC-I
 
 ### Assumptions:
 1. Mapping files to use: [https://github.com/sjy1203/GAMENet/blob/master/data/ndc2rxnorm_mapping.txt](NDC2RxNorm) and [https://github.com/sjy1203/GAMENet/blob/master/data/ndc2atc_level4.csv](RxNorm2ATC4). Reason to use old mapping files is mentioned in Part-1 of main.ipynb and is to prevent loss of 25% ATC4 codes
-2. Single visit patient: We have assumed it to be for now patient with single hospital admission. Paper also talks in this direction. Moreover, we have taken whole admission data and not only first 24 data.
+2. Single visit patient: We have assumed it to be for now patient with single hospital admission. Paper also talks in this direction. Moreover, we have taken whole admission data and not only first 24 Hr data.
 3. Max seq len input to G-BERT: for pre-training it is 100(+1 for CLS) for ATC4 codes and 39(+1 for CLS) for ICD codes. And for training its 92+1 and 39+1 respectively. This is direct consequence of taking whole hospital visit data.  
 4. Number of most-frequent ICD9 codes: most frequent 2000 ICD9 codes are considered(impacting vocab size, and hence parameter size). We have mentioned analysis on this in Part-1 of main.ipynb and i.e. only 3% visits had >30% "[UNK]" token when top 2000 diagnosis codes are considered
 5. Paper talks about masking in confusing manner. It says we mask 15% of codes, but we are not masking fixed 15% of codes. Rather we are masking codes with probability of 15%. This might mean that at time we mask more than or less than 15% codes in a sequence. However over large iterations we would have ~15% tokens being masked.
