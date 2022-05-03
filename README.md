@@ -32,7 +32,7 @@ Tables like PRESCRIPTIONS.CSV and DIAGNOSIS_ICD.csv which are present in MIMIC-I
 8. Logistic Regression: Since it is not clear that we have to sum up previous visits or not. We are going ahead with not summing up previous visits. Also breakdown of training and test data not given so assuming it to be 0.8:0.2
 
 ### Doubts in Author implementation:
-1. Author implementation has two vocabularies but ideally BERT style pre-training should have one global vocab
+1. Author implementation has two vocabularies but ideally for Ontology embedding to work we should have one global vocab
 2. [<i><a href="https://github.com/jshang123/G-Bert">G-BERT author's implementation</a></i> takes only first 24 hrs data of a single visit patient though paper talks about hospital visit/admission whole.
 3. As a result of (2.) author implementation have max seq len (input to G-BERT) as 62 ATC4 in pre-training. This is direct consequence of taking less data from visit (first 24 hrs)
 4. Some SUBJECT_ID in author provided <a href="https://github.com/jshang123/G-Bert/blob/master/data/data-single-visit.pkl">data set</a> for single visit has missing Subject Ids like: 11, 86, 92. Though there is no clear reason why? This might be hidden due to complex data processing done by author in his/her git repo.
