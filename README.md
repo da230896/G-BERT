@@ -1,5 +1,6 @@
 # Pre-training of Graph Augmented Transformers(G-BERT) for Medication Recommendation
-Implementation of https://arxiv.org/pdf/1906.00346.pdf for CS598 Project
+Implementation of https://arxiv.org/pdf/1906.00346.pdf for CS598 Project. We have added project report that we created as a part of our project and kept its name "Report.pdf".
+If interested in broader level details about the problem and G-BERT paper, one can refer that.
 
 ## Requirements:
 Refer Conda online documentation to setup environment using env.yml checked-in in the repo.
